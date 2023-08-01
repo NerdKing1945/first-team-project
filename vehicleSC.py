@@ -690,6 +690,8 @@ cmds.tabLayout( tabs, edit=True, tabLabel=((child1, 'One'), (child2, 'Two'), (ch
 
 cmds.showWindow()
 
+#update_test
+
 
 
 
