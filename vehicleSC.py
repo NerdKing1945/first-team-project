@@ -148,26 +148,46 @@ child3 = pm.frameLayout(label="First Step")
 
 
 import pymel.core as pm
-pm.rowColumnLayout( numberOfColumns=2, columnWidth=[(1, 240), (2, 180)] )
 
-cmds.text(l="Fill these fileds before APPLY SCRIPT")
+def copy_selected_object_to_text_field(text_field):
+    # Get the selected object's name
+    selected_object = pm.ls(selection=True)
+    if selected_object:
+        object_name = selected_object[0].name()
+        # Set the text field's value to the selected object's name
+        pm.textField(text_field, edit=True, text=object_name)
+
+# Create the UI
+pm.rowColumnLayout(numberOfColumns=3, columnWidth=[(1, 220), (2, 20), (3, 180)])
+
+cmds.text(l="Fill these fields before APPLY SCRIPT")
+cmds.text(l="")
 cmds.text(l="")
 
-name = cmds.textField("nameOfTexFld0", tx="vehicle_ctrl")
-cmds.text( label='------------------' )
+name1 = cmds.textField("nameOfTexFld0", tx="vehicle_ctrl")
+cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name1))
+cmds.text(label='------------------')
 
-name = cmds.textField("nameOfTexFld00", tx="vehicle_ctrl_parent")
-cmds.text( label='------------------' )
+name2 = cmds.textField("nameOfTexFld00", tx="vehicle_ctrl_parent")
+cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name2))
+cmds.text(label='------------------')
 
+name3 = cmds.textField("nameOfTexFld1", tx="groupName_wheelPosition_parentConstraint1")
+cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name3))
+cmds.text(label='.target[0].targetOffsetRotateX')
 
-name = cmds.textField("nameOfTexFld1", tx="groupName_wheelPosition_parentConstraint1")
-cmds.text( label='.target[0].targetOffsetRotateX' )
-name = cmds.textField("nameOfTexFld2", tx="groupname_wheelPosition_parentConstraint1")
-cmds.text( label='.target[0].targetOffsetRotateX' )
-name = cmds.textField("nameOfTexFld3", tx="groupname_wheelPosition_parentConstraint1")
-cmds.text( label='.target[0].targetOffsetRotateX' )
-name = cmds.textField("nameOfTexFld4", tx="groupname_wheelPosition_parentConstraint1")
-cmds.text( label='.target[0].targetOffsetRotateX' )
+name4 = cmds.textField("nameOfTexFld2", tx="groupname_wheelPosition_parentConstraint1")
+cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name4))
+cmds.text(label='.target[0].targetOffsetRotateX')
+
+name5 = cmds.textField("nameOfTexFld3", tx="groupname_wheelPosition_parentConstraint1")
+cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name5))
+cmds.text(label='.target[0].targetOffsetRotateX')
+
+name6 = cmds.textField("nameOfTexFld4", tx="groupname_wheelPosition_parentConstraint1")
+cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name6))
+cmds.text(label='.target[0].targetOffsetRotateX')
+
 
 
 pm.setParent('..')
@@ -689,8 +709,6 @@ cmds.setParent( '..' )
 cmds.tabLayout( tabs, edit=True, tabLabel=((child1, 'One'), (child2, 'Two'), (child3, 'Three')) )
 
 cmds.showWindow()
-
-#update_test
 
 
 
