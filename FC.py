@@ -35,3 +35,5 @@ class SafeFourCal(FourCal):
             return self.first / self.second
         
 #just updated!!
+
+# I am the senior. I am the game!!
