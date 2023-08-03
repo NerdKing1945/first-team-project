@@ -33,3 +33,5 @@ class SafeFourCal(FourCal):
         
         else:
             return self.first / self.second
+        
+#just updated!!
