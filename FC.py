@@ -40,3 +40,4 @@ class SafeFourCal(FourCal):
 ###this is Sparta!!!!!!!!!!!!!!
 ####Whatttttttttttttttttttttttttttttt?!!!!!!!!!!!!!!!! I am freshman
 ####Whatttttttttttttttttttttttttttttt?!!!!!!!!!!!!!!!! I am freshman
+#####Yaye!! Ninjaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!! I am freshman!!
