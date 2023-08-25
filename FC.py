@@ -41,3 +41,4 @@ class SafeFourCal(FourCal):
 ####Whatttttttttttttttttttttttttttttt?!!!!!!!!!!!!!!!! I am freshman
 ####Whatttttttttttttttttttttttttttttt?!!!!!!!!!!!!!!!! I am freshman
 #####Yaye!! Ninjaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!!!!!!!!!!!!!!! I am freshman!!
+#####o0o0o0o0o0o0o0o0o0
