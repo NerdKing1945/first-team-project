@@ -384,7 +384,28 @@ def createJawAttrs():
     mc.setAttr('{}.{}'.format(node, sorted(getLipParts()['C_lower'].keys())[0]), lock=1)
     
     
-        
+def createConstraints():
+    """
+    return:
+    
+    """
+    
+    for value in getLipParts().values():
+        for lip_jnt, broad_jnt in value.items():
+            
+            seal_token = 'upper_SEAL' if 'Upper' in lip_jnt else 'lower_SEAL'
+            lip_seal = lip_jnt.replace(JOINT, seal_token)
+            
+            if mc.objExists(lip_seal):
+                const = mc.parentConstraint(broad_jnt, lip_seal, lip_jnt, mo=True)[0]
+                mc.setAttr('{}.interpType'.format(const), 2)
+                
+            else:
+                const = mc.parentConstraint(broad_jnt, lip_jnt, mo=True)[0]
+                mc.setAttr('{}.interpType'.format(const), 2)
+                
+                
+    
     
     
     
