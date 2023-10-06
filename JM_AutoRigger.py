@@ -393,11 +393,64 @@ tabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)
 cmds.setParent(tabs)
 tab1 = cmds.columnLayout(adjustableColumn=True)
 pm.text(label="Temporary Content for Tab 1")
+pm.button(l= "itwillcomeSoon")
 
 # Second tab
 cmds.setParent(tabs)
 tab2 = cmds.columnLayout(adjustableColumn=True)
 pm.text(label="Temporary Content for Tab 2")
+
+import maya.cmds as cmds
+import sys
+
+# Define the path to the module
+path = r'D:\jaw_utils'
+
+# Remove the module from sys.modules if it's already imported
+if 'jaw_utils3' in sys.modules:
+    del sys.modules['jaw_utils3']
+
+# Add the path to sys.path if it's not already there
+if path not in sys.path:
+    sys.path.append(path)
+    
+import jaw_utils3
+
+
+
+# 텍스트 필드에서 값을 가져와서 createGuides 함수에 전달하는 함수
+def get_number_and_create_guides(*args):
+    text = cmds.textField("myTextField", q=True, text=True)
+    
+    try:
+        number = int(text)
+        if 1 <= number <= 15:  # 1에서 15 사이의 양의 정수 확인
+            jaw_utils3.createGuides(number)  # createGuides 함수 호출 및 텍스트 필드의 값을 전달
+        else:
+            print('Invalid input. Please enter a positive integer between 1 and 15.')
+    except ValueError:
+        print('Invalid input. Please enter a valid integer.')
+
+def placeJoints(*args):
+    jaw_utils3.build()
+    
+def temp(*args):
+    jaw_utils3.createJawPin()
+    
+
+
+cmds.text(label="Enter a span number(1-15):")
+textfield = cmds.textField("myTextField")
+cmds.button(label="Create Locator Guides", command=get_number_and_create_guides)
+cmds.button(label="build joints", command=placeJoints)
+cmds.button(label="Create JawPin", command=temp)
+
+
+
+
+
+
+
 
 # Third tab
 cmds.setParent(tabs)

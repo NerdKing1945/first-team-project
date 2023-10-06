@@ -27,7 +27,7 @@ def addOffset(dst, suffix='OFF'):
     
     return grp_offset
     
-def createGuides(number=8):
+def createGuides(number):
     """
     :param number:
     :return:
