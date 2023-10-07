@@ -131,21 +131,36 @@ def checkScene():
 
 
 
-def create_locators(selected_option, locator_name, locator_list):
+import maya.cmds as mc
+
+def create_locators(selected_option, locator_name, locator_list, scale_factor=0.04):
     if locator_name:
         for i in range(1, selected_option + 1):
             loc_name_with_index = "L_" + locator_name + "_" + str(i)
             mc.spaceLocator(n=loc_name_with_index)
+            
+            # 생성한 로케이터에 스케일 적용
+            mc.setAttr(loc_name_with_index + ".localScaleX", scale_factor)
+            mc.setAttr(loc_name_with_index + ".localScaleY", scale_factor)
+            mc.setAttr(loc_name_with_index + ".localScaleZ", scale_factor)
+            
             locator_list.append(loc_name_with_index)
             print("Locator '{}' created.".format(loc_name_with_index))
             
             # 오른쪽 버전도 생성
             loc_name_with_index_r = "R_" + locator_name + "_" + str(i)
             mc.spaceLocator(n=loc_name_with_index_r)
+            
+            # 생성한 로케이터에 스케일 적용
+            mc.setAttr(loc_name_with_index_r + ".localScaleX", scale_factor)
+            mc.setAttr(loc_name_with_index_r + ".localScaleY", scale_factor)
+            mc.setAttr(loc_name_with_index_r + ".localScaleZ", scale_factor)
+            
             locator_list.append(loc_name_with_index_r)
             print("Locator '{}' created.".format(loc_name_with_index_r))
     else:
         print("Text field is empty. Please enter a name.")
+
 
 def makePri(*args):
     selected_option1 = int(pm.radioButtonGrp('RBGrp1', q=1, select=1)) + 2
@@ -175,6 +190,12 @@ def makePri(*args):
     print nasoFolds_locator_list
     
     checkScene()
+    
+     #정수리의 중앙에 위치해야 할 로케이터를 생성        
+    cmds.spaceLocator(n="centre_Ultimate_Loc")
+    cmds.setAttr('centre_Ultimate_Loc.translateX', 0)
+    cmds.setAttr('centre_Ultimate_Loc.translateY', 2)
+    cmds.setAttr('centre_Ultimate_Loc.translateZ', 0)
 
 def makePri2(*args):
     
