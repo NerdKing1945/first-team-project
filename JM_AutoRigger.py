@@ -164,19 +164,19 @@ def create_locators(selected_option, locator_name, locator_list, scale_factor=0.
 
 def makePri(*args):
     selected_option1 = int(pm.radioButtonGrp('RBGrp1', q=1, select=1)) + 2
-    locator_name1 = queryTextFld1()
+    locator_name1 = queryTextFld1() + "_loc"
     create_locators(selected_option1, locator_name1, brow_locator_list)
     
     selected_option2 = int(pm.radioButtonGrp('RBGrp2', q=1, select=1)) + 2
-    locator_name2 = queryTextFld2()
+    locator_name2 = queryTextFld2() + "_loc"
     create_locators(selected_option2, locator_name2, eyelow_locator_list)
     
     selected_option3 = int(pm.radioButtonGrp('RBGrp3', q=1, select=1)) + 2
-    locator_name3 = queryTextFld3()
+    locator_name3 = queryTextFld3() + "_loc"
     create_locators(selected_option3, locator_name3, cheek_locator_list)
     
     selected_option4 = int(pm.radioButtonGrp('RBGrp4', q=1, select=1)) + 2
-    locator_name4 = queryTextFld4()
+    locator_name4 = queryTextFld4() + "_loc"
     create_locators(selected_option4, locator_name4, nasoFolds_locator_list)
     
     
@@ -495,19 +495,19 @@ cmds.text(l="Fill these fields before APPLY SCRIPT")
 cmds.text(l="")
 cmds.text(l="")
 
-name1 = cmds.textField("nameOfTexFld1", tx="brow_loc")
+name1 = cmds.textField("nameOfTexFld1", tx="brow")
 cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name1))
 cmds.text(label='eyebrow_crv')
 
-name2 = cmds.textField("nameOfTexFld2", tx="eyelow_loc")
+name2 = cmds.textField("nameOfTexFld2", tx="eyelow")
 cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name2))
 cmds.text(label='eyelow_crv')
 
-name3 = cmds.textField("nameOfTexFld3", tx="cheek_loc")
+name3 = cmds.textField("nameOfTexFld3", tx="cheek")
 cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name3))
 cmds.text(label='cheek_crv')
 
-name4 = cmds.textField("nameOfTexFld4", tx="nasolabi_loc")
+name4 = cmds.textField("nameOfTexFld4", tx="nasolabi")
 cmds.button(l="CV", c=lambda x: copy_selected_object_to_text_field(name4))
 cmds.text(label='nasoFolds_crv')
 

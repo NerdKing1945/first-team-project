@@ -33,7 +33,7 @@ def createJoints():
             offset_joint_name = joint_name2.replace("_jnt", "_offset_jnt")
             cmds.joint(name=offset_joint_name, position=(locator_x_position2, locator_y_position2, locator_z_position2))  # 원하는 위치에 따라 조절 가능
             
-            
+           
             
             
             try:
@@ -71,7 +71,7 @@ def toggle_local_rotation_axes():
 
 
 
-
+createJoints()
 
 #센터 조인트의 오리엔테이션 설정
 
@@ -159,8 +159,72 @@ cmds.select(cl=True)
 
 
 
+
+#만들어둔 변수를 활용해야 한다.
+#brow_locator_list
+#eyelow_locator_list
+#cheek_locator_list
+#nasoFolds_locator_list
+
     
     
+    
+import maya.cmds as cmds
+
+# 함수 정의: 로케이터와 조인트 쌍을 받아 패런트 설정
+def parent_locator_joint_pairs(locator_list, joint_prefix):
+    num_pairs = len(locator_list) // 2  # 각 로케이터 리스트의 쌍의 수
+
+    for i in range(num_pairs):
+        joint_name = "{}_jnt_{}".format(joint_prefix, i + 1)
+        locator_name = "{}_loc_{}".format(joint_prefix, i + 1)
+
+        # 조인트와 로케이터를 선택
+        cmds.select(joint_name, locator_name)
+
+        # 로케이터를 조인트의 자식으로 설정 (패런트 시키기)
+        cmds.parent(a=True)
+
+        # 선택 해제
+        cmds.select(clear=True)
+
+
+
+# 각 로케이터 리스트에 대해 패런트 설정 호출
+jnt_name1 = mc.textField("nameOfTexFld1", q=True, tx=True)
+parent_locator_joint_pairs(brow_locator_list, "L_" + jnt_name1)
+parent_locator_joint_pairs(brow_locator_list, "R_" + jnt_name1)
+
+jnt_name2 = mc.textField("nameOfTexFld2", q=True, tx=True)
+parent_locator_joint_pairs(eyelow_locator_list, "L_" + jnt_name2)
+parent_locator_joint_pairs(eyelow_locator_list, "R_" + jnt_name2)
+
+jnt_name3 = mc.textField("nameOfTexFld3", q=True, tx=True)
+parent_locator_joint_pairs(cheek_locator_list, "L_" + jnt_name3)
+parent_locator_joint_pairs(cheek_locator_list, "R_" + jnt_name3)
+
+
+jnt_name4 = mc.textField("nameOfTexFld4", q=True, tx=True)
+parent_locator_joint_pairs(nasoFolds_locator_list, "L_" + jnt_name4)
+parent_locator_joint_pairs(nasoFolds_locator_list, "R_" + jnt_name4)
+
+
+
+
+
+group_name = cmds.group(em=True, name="Loc_Group")   
+cmds.select(cl=True)
+cmds.select(brow_locator_list, add=True) 
+cmds.select(eyelow_locator_list, add=True)
+cmds.select(cheek_locator_list, add=True)
+cmds.select(nasoFolds_locator_list, add=True) 
+cmds.select(group_name, add=True)
+
+cmds.parent()
+
+
+
+
     
     
 
