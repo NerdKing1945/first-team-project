@@ -14,7 +14,7 @@ def createJoints():
             # 조인트 이름 설정
             joint_name = "__centre_" + locator_name.replace("_loc", "_jnt")  # 로케이터 이름을 조인트 이름에 추가
             
-            # 조인트 생성
+            # 센터 조인트 생성
             cmds.select(clear=True)  # 선택 해제
             cmds.joint(name=joint_name, position=( locator_x_position, locator_y_position, locator_z_position))
             
@@ -25,7 +25,7 @@ def createJoints():
             
             joint_name2 = locator_name.replace("_loc", "_jnt")  # 로케이터 이름을 조인트 이름에 추가
             
-            # 조인트 생성
+            # 얼굴 조인트 생성
             cmds.select(clear=True)  # 선택 해제
             cmds.joint(name=joint_name2, position=(locator_x_position2, locator_y_position2, locator_z_position2))
             
@@ -225,15 +225,19 @@ cmds.parent()
 
 
 
+
+#radius 값 조절.. 
+
+# 변경할 radius 값
+new_radius = 0.2  # 이 값을 원하는 크기로 변경하세요
+
+# 검색할 그룹의 이름
+group_name = "Loc_Group"  # 원하는 그룹의 이름으로 변경하세요
+
+# 그룹 내의 모든 조인트를 검색
+joint_list = cmds.listRelatives(group_name, allDescendents=True, type="joint")
+
+# 조인트의 radius 값을 변경
+for joint in joint_list:
+    cmds.setAttr(joint + ".radius", new_radius)
     
-    
-
-
-
-
-
-
-        
-    
-        
-
