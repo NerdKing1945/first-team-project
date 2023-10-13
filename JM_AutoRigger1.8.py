@@ -789,7 +789,7 @@ def buildFacialJoints():
 if cmds.window("myWindow", exists=True):
     cmds.deleteUI("myWindow", window=True)
 
-my_window = cmds.window("myWindow", title="JM_Facial_AutoRigger1.5")
+my_window = cmds.window("myWindow", title="JM_Facial_AutoRigger1.8")
 
 # Set the width and height of the window
 window_width = 500
@@ -803,7 +803,51 @@ tabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)
 cmds.setParent(tabs)
 tab1 = cmds.columnLayout(adjustableColumn=True)
 pm.text(label="Temporary Content for Tab 1")
-pm.button(l= "itwillcomeSoon")
+
+import maya.cmds as cmds
+import sys
+
+# Define the path to the module
+path = r'D:\jaw_utils'
+
+# Remove the module from sys.modules if it's already imported
+if 'eyeRigger' in sys.modules:
+    del sys.modules['eyeRigger']
+
+# Add the path to sys.path if it's not already there
+if path not in sys.path:
+    sys.path.append(path)
+    
+import eyeRigger
+
+
+def steP1(*args):
+    eyeRigger.eyeRigInitialSetup()
+    
+
+def steP2(*args):
+    eyeRigger.leyeJointSetup()
+
+
+def steP3(*args):
+    eyeRigger.reyeJointSetup()
+
+
+def steP4(*args):
+    eyeRigger.aimConstraintLocatorSetup()
+
+
+pm.button(l= "Initial Setup", command =steP1)
+pm.text(label="place each locator to the center of the each eye")
+
+pm.text(label="grab left side eyelid vertices")
+pm.button(l= "L eye joint setup", command =steP2)
+pm.text(label="grab right side eyelid vertices")
+pm.button(l= "R eye joint setup", command =steP3)
+
+pm.text(label="parent joints into an appropriate group")
+pm.button(l= "AimConstraints and locator setup", command =steP4)
+
 
 # Second tab
 cmds.setParent(tabs)
