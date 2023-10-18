@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import maya.cmds as mc
 import maya.cmds as cmds
 import pymel.core as pm
@@ -835,6 +833,40 @@ def steP3(*args):
 
 def steP4(*args):
     eyeRigger.aimConstraintLocatorSetup()
+    
+
+
+import maya.cmds as mc
+
+def get_curveShape_name(*args):
+    try:
+        sel = mc.ls(sl=1)
+        crv = mc.textField("myTextField_eye", q=True, text=True)
+        
+        if not crv:  # 텍스트 필드가 비어 있다면
+            raise ValueError("텍스트 필드가 비어 있습니다.")
+        
+        for loc in sel:
+            npc = mc.createNode('nearestPointOnCurve', n=loc.replace('loc', 'npc'))
+            mc.connectAttr(crv + '.worldSpace', npc + '.inputCurve')
+            mc.connectAttr(loc + '.t', npc + '.inPosition')
+            u = mc.getAttr(npc + '.parameter')
+            mc.delete(npc)
+            pci = mc.createNode('pointOnCurveInfo', n=loc.replace('loc', 'pci'))
+            mc.connectAttr(crv + '.worldSpace', pci + '.inputCurve')
+            mc.connectAttr(pci + '.position', loc + '.t')
+            mc.setAttr(pci + '.parameter', u)
+    except ValueError as e:
+        # 텍스트 필드가 비어 있을 때 발생한 예외를 처리하고 메시지를 출력합니다.
+        print("에러: " + str(e))
+    except Exception as e:
+        # 다른 예외를 처리할 수 있습니다.
+        print("다른 예외가 발생했습니다: 로케이터가 선택되지 않았습니다.", e)
+
+
+
+
+
 
 
 pm.button(l= "Initial Setup", command =steP1)
@@ -847,6 +879,10 @@ pm.button(l= "R eye joint setup", command =steP3)
 
 pm.text(label="parent joints into an appropriate group")
 pm.button(l= "AimConstraints and locator setup", command =steP4)
+
+cmds.text(label="Enter a name of curveShape for Eyelid")
+textfield = cmds.textField("myTextField_eye")
+cmds.button(label="Attach selected locators to the curveShape", command =get_curveShape_name)
 
 
 # Second tab
