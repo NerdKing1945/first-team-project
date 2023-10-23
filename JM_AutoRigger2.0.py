@@ -891,8 +891,8 @@ pm.button(l= "R eye joint setup", command =steP3)
 pm.text(label="parent joints into an appropriate group")
 pm.button(l= "AimConstraints and locator setup", command =steP4)
 
-cmds.text(label="Enter a name of curveShape for Eyelid")
-textfield = cmds.textField("myTextField_eye")
+cmds.text(label="Enter a name of curveShape for Eyelid and select locators to attach to the curve")
+textfield = cmds.textField("myTextField_eye", tx="RL_upLidHigh_CRVShape, RL_downLidHigh_CRVShape")
 cmds.button(label="Attach selected locators to the curveShape", command =get_curveShape_name)
 
 pm.text(label="import EyeCtrls manual work needed")
