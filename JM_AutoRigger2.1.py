@@ -574,7 +574,7 @@ def select_top_level_sphere_groups():
 
 
 
-#얼굴의 조인트를 생성밑 관절의 오리엔테이션 재설정에 관련한 시퀀스
+#얼굴의 조인트를 생성및 관절의 오리엔테이션 재설정에 관련한 시퀀스
 
 def buildFacialJoints():
 
@@ -720,7 +720,7 @@ def buildFacialJoints():
         
     
     
-    
+def addSurfaceSetting(*args):    
     #Loc_Group 아래에 있는 조인트들을 선택
     select_joints_with_string("Loc_Group", "offset_jnt")
     
@@ -791,7 +791,7 @@ my_window = cmds.window("myWindow", title="JM_Facial_AutoRigger2.1")
 
 # Set the width and height of the window
 window_width = 500
-window_height = 320
+window_height = 360
 cmds.window(my_window, edit=True, widthHeight=(window_width, window_height))
 
 # Create the tab layout
@@ -1054,6 +1054,8 @@ rb_grp4 = pm.radioButtonGrp('RBGrp4', numberOfRadioButtons=3,
 # 생성 버튼 추가
 create_button = pm.button(label="로케이터 생성", command=makePri)
 create_button = pm.button(label="모션패스 연결", command=makePri2)
+pm.text(label="add influence the facial joints to the face")
+create_button = pm.button(label="넙스 컨트롤 설치", command=addSurfaceSetting)
 
 # Add the tabs to the tab layout
 cmds.tabLayout(tabs, edit=True, tabLabel=((tab1, 'Eyes'), (tab2, 'LipSeal'), (tab3, 'Facial')))
