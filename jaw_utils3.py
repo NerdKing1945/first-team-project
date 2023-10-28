@@ -333,7 +333,7 @@ def lipPart(part):
 
 def createSeal(part):
     """
-    param part:
+    param part: 선형보간이 쓰인 구간 
     return:
 
   
@@ -454,7 +454,7 @@ def createConstraints():
 
 def createInitialValue(part, degree=1.3):
     """
-    return:
+    return:선형보간이 두번째로 쓰인 구간.. 
 
     """
     jaw_attr = [part for part in lipPart(part) if not part.startswith('C') and not part.startswith('R')]
@@ -476,7 +476,7 @@ def createInitialValue(part, degree=1.3):
         
 def createOffsetFollow():
     """
-    return:
+    return:요게 기능의 핵심처럼 보인다.
     """
     
     jaw_attr = 'jaw_attributes'
