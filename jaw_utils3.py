@@ -526,7 +526,7 @@ def addSealAttrs():
     
 def connectSeal(part):
     """
-    return:
+    return:선형보간이 세번째로 쓰인 구간 
 
     
     """
